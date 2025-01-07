@@ -1,5 +1,6 @@
 package collection;
 
+import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -12,6 +13,11 @@ public class TreeSetMainClass {
 		num.add(1);
 		num.add(222);
 		
+		Iterator<Integer> values = num.iterator();
+		while(values.hasNext()) {
+			System.out.println(values.next());
+		}
+		System.out.println("-----------");
 		for(Integer n : num) {
 			System.out.println(n);
 		}
