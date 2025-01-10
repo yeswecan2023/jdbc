@@ -11,20 +11,14 @@ class Student {
 	int age;
 	String name;
 	
-	
-	
 	public Student(int age, String name) {
 		this.age = age;
 		this.name = name;
 	}
 
-
-
 	public String toString() {
 		return "Student [age=" + age + ", name=" + name + "]";
 	}
-	
-	
 }
 
 
@@ -48,7 +42,6 @@ public class sortStringMainClass {
 		stud.add(new Student(78, "Tom"));
 		
 		Collections.sort(stud, com);
-		
 		
 		for ( Student s : stud) {
 			System.out.println(s);
