@@ -13,7 +13,8 @@ public class StreamAPIMainClass {
 		//s1.forEach(n -> System.out.println(n));
 		
 		Stream<Integer> s2 = s1.filter(n -> n%2 == 0);
-		s2.forEach(n -> System.out.println(n));
+		Stream<Integer> s3 = s2.map(n -> n*2);
+		s3.forEach(n -> System.out.println(n));
 	}
 
 }
