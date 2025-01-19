@@ -21,7 +21,7 @@ public class newSwitch {
 		
 		System.out.println(swit);
 		
-		
+		// with return
 		swit = switch(day) {
 		case "mon" -> "7AM";
 		default -> "8AM";
