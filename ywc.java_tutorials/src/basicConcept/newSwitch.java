@@ -28,5 +28,14 @@ public class newSwitch {
 		};
 		
 		System.out.println(swit);
+		
+		// using :
+		
+		swit = switch(day) {
+		case "mon" : yield "9AM";
+		default : yield "10AM";
+		};
+		
+		System.out.println(swit);
 	}
 }
