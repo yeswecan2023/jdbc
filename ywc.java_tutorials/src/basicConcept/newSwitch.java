@@ -9,5 +9,16 @@ public class newSwitch {
 			case "mon" -> System.out.println("5AM");
 			default -> System.out.println("8AM");
 		}
+		
+		// expression
+		
+		String swit = "";
+		
+		switch(day) {
+		case "mon" -> swit = "6AM";
+		default -> swit = "4AM";
+		}
+		
+		System.out.println(swit);
 	}
 }
