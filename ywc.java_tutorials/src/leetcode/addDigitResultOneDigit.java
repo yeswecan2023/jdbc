@@ -3,7 +3,7 @@ package leetcode;
 public class addDigitResultOneDigit {
 
 	public static void main(String[] args) {
-		int num = 99;
+		int num = 242239;
 		
 		if(num < 9 ) {
 			System.out.println(num);
