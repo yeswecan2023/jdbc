@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class jdbcDemo1 {
 
 	public static void main(String[] args) throws Exception {
-		insertRecord();
+		insertVar();
 	}
 	
 	public static void readRecord() throws Exception {
@@ -27,11 +27,17 @@ public class jdbcDemo1 {
 		con.close();
 	}
 	
-	public static void insertRecord() throws Exception {
+	public static void insertVar() throws Exception {
 		String url = "jdbc:mysql://localhost:3306/jdbcdemo";
 		String username = "root";
 		String password = "Java@123";
-		String query = "Insert into employee values (5, 'das', 25000)";
+		
+		int id = 6;
+		String name = "jib";
+		int salary = 600000;
+		
+		
+		String query = "Insert into employee values ("+id+", '"+name+"', "+salary+")";
 		
 		Connection con = DriverManager.getConnection(url, username, password);
 		Statement st = con.createStatement();
