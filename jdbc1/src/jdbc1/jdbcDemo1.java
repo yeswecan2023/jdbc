@@ -2,13 +2,14 @@ package jdbc1;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class jdbcDemo1 {
 
 	public static void main(String[] args) throws Exception {
-		insertVar();
+		insertUsingPst();
 	}
 	
 	public static void readRecord() throws Exception {
@@ -27,21 +28,24 @@ public class jdbcDemo1 {
 		con.close();
 	}
 	
-	public static void insertVar() throws Exception {
+	public static void insertUsingPst() throws Exception {
 		String url = "jdbc:mysql://localhost:3306/jdbcdemo";
 		String username = "root";
 		String password = "Java@123";
 		
-		int id = 6;
-		String name = "jib";
+		int id = 7;
+		String name = "nik";
 		int salary = 600000;
 		
 		
-		String query = "Insert into employee values ("+id+", '"+name+"', "+salary+")";
+		String query = "Insert into employee values ( ?,?,?)";
 		
 		Connection con = DriverManager.getConnection(url, username, password);
-		Statement st = con.createStatement();
-		int rows = st.executeUpdate(query);
+		PreparedStatement pst = con.prepareStatement(query);
+		pst.setInt(1, id);
+		pst.setString(2,name);
+		pst.setInt(3, salary);
+		int rows = pst.executeUpdate();
 		System.out.println(rows);
 		con.close();
 	}
