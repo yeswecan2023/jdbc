@@ -9,7 +9,7 @@ import java.sql.Statement;
 public class jdbcDemo1 {
 
 	public static void main(String[] args) throws Exception {
-		insertUsingPst();
+		delete();
 	}
 	
 	public static void readRecord() throws Exception {
@@ -46,6 +46,21 @@ public class jdbcDemo1 {
 		pst.setString(2,name);
 		pst.setInt(3, salary);
 		int rows = pst.executeUpdate();
+		System.out.println(rows);
+		con.close();
+	}
+	
+	public static void delete() throws Exception {
+		String url = "jdbc:mysql://localhost:3306/jdbcdemo";
+		String username = "root";
+		String password = "Java@123";
+		
+		int id = 5;
+		
+		String query = "delete from employee where emp_id = "+id ;
+		Connection con = DriverManager.getConnection(url, username, password);
+		Statement st = con.createStatement();
+		int rows = st.executeUpdate(query);
 		System.out.println(rows);
 		con.close();
 	}
