@@ -1,5 +1,6 @@
 package jdbc1;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -10,7 +11,7 @@ import java.sql.Statement;
 public class jdbcDemo1 {
 
 	public static void main(String[] args) throws Exception {
-		update();
+		sp();
 	}
 	
 	public static void readRecord() throws Exception {
@@ -79,5 +80,20 @@ public class jdbcDemo1 {
 		System.out.println(row);		
 	} 
 	
+	public static void sp() throws Exception {
+		String url = "jdbc:mysql://localhost:3306/jdbcdemo";
+		String username ="root";
+		String password = "Java@123";
+		
+		Connection con = DriverManager.getConnection(url, username, password);
+		CallableStatement cst = con.prepareCall("{call GetEmp()}");
+		ResultSet rs = cst.executeQuery();
+		while(rs.next()) {
+			System.out.println("Id is "+rs.getInt(1));
+			System.out.println("Name is "+rs.getString(2));
+			System.out.println("Salary is "+rs.getInt(3));
+		}
+		con.close();
+	}
 
 }
