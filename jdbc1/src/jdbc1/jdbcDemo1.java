@@ -12,7 +12,7 @@ import java.sql.Types;
 public class jdbcDemo1 {
 
 	public static void main(String[] args) throws Exception {
-		getNameByIdSP();
+		disableAutoCommit();
 	}
 	
 	public static void readRecord() throws Exception {
@@ -113,6 +113,30 @@ public class jdbcDemo1 {
 		cst.executeUpdate();
 		System.out.println(cst.getString(2));
 		
+	}
+	
+	public static void disableAutoCommit() throws Exception {
+		String url = "jdbc:mysql://localhost:3306/jdbcdemo";
+		String username = "root";
+		String password = "Java@123";
+		
+		String query1 = "update employee set salary = 1100000 where emp_id = 3";
+		String query2 = "update employee set salary = 600000 where emp_id = 2";
+		
+		Connection con = DriverManager.getConnection(url, username, password);
+		con.setAutoCommit(false);
+		Statement st = con.createStatement();
+		
+		int rows1 = st.executeUpdate(query1);
+		System.out.println(rows1);
+		
+		int rows2 = st.executeUpdate(query2);
+		System.out.println(rows2);
+		
+		if(rows1 > 0 && rows2 > 0) {
+			con.commit();
+		}
+		con.close();
 	}
 
 }
