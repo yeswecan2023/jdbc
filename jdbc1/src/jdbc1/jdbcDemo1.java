@@ -7,11 +7,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Types;
 
 public class jdbcDemo1 {
 
 	public static void main(String[] args) throws Exception {
-		sp();
+		getNameByIdSP();
 	}
 	
 	public static void readRecord() throws Exception {
@@ -94,6 +95,24 @@ public class jdbcDemo1 {
 			System.out.println("Salary is "+rs.getInt(3));
 		}
 		con.close();
+	}
+	
+	/**
+	 * @throws Exception
+	 */
+	public static void getNameByIdSP() throws Exception {
+		String url = "jdbc:mysql://localhost:3306/jdbcdemo";
+		String username = "root";
+		String password = "Java@123";
+		int id = 3;
+		
+		Connection con = DriverManager.getConnection(url, username, password);
+		CallableStatement cst = con.prepareCall("{ call GetNameById(?,?)}");
+		cst.setInt(1, id);
+		cst.registerOutParameter(2, Types.VARCHAR);
+		cst.executeUpdate();
+		System.out.println(cst.getString(2));
+		
 	}
 
 }
