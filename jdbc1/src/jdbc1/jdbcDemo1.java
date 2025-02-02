@@ -12,7 +12,7 @@ import java.sql.Types;
 public class jdbcDemo1 {
 
 	public static void main(String[] args) throws Exception {
-		disableAutoCommit();
+		batchInsert();
 	}
 	
 	public static void readRecord() throws Exception {
@@ -135,6 +135,31 @@ public class jdbcDemo1 {
 		
 		if(rows1 > 0 && rows2 > 0) {
 			con.commit();
+		}
+		con.close();
+	}
+	
+	public static void batchInsert() throws Exception {
+		String url = "jdbc:mysql://localhost:3306/jdbcdemo";
+		String username = "root";
+		String password = "Java@123";
+		
+		String query1 = "update employee set salary = 900000 where emp_id = 1";
+		String query2 = "update employee set salary = 900000 where emp_id = 2";
+		String query3 = "update employee set salary = 900000 where emp_id = 3";
+		String query4 = "update employee set salary = 900000 where emp_id = 4";
+		
+		Connection con = DriverManager.getConnection(url, username, password);
+		Statement st = con.createStatement();
+		st.addBatch(query1);
+		st.addBatch(query2);
+		st.addBatch(query3);
+		st.addBatch(query4);
+		
+		int[] res = st.executeBatch();
+		
+		for(int i: res) {
+			System.out.println(i);
 		}
 		con.close();
 	}
