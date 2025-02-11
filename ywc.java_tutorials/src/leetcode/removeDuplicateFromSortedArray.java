@@ -8,7 +8,11 @@ public class removeDuplicateFromSortedArray {
 		for (int i = 1; i < num.length; i++) {
 			if (num[i] > num[i-1]) {
 				num[indexForNextNumber] = num[i];
+				indexForNextNumber++;
 			}
+		}
+		for(int a : num) {
+			System.out.print(a);
 		}
 	}
 
