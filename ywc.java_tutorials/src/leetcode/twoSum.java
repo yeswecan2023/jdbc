@@ -1,5 +1,6 @@
 package leetcode;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,12 +12,13 @@ public class twoSum {
 		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
 		for (int i = 0; i < nums.length; i++) {
 			if(map.containsKey(target - nums[i])) {
-				return new int[] {i, map.get(target - nums[i])};
-
+				int[] result = new int[] {i, map.get(target - nums[i])};
+				System.out.println(Arrays.toString(result));
+				return; 
 			}
+			map.put(nums[i], i);
 		}
-		return null;
-
+		System.out.println("Null");
 	}
 
 }
