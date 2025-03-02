@@ -19,6 +19,13 @@ public class twoSum {
 			map.put(nums[i], i);
 		}
 		System.out.println("Null");
+		
+		// ---- Solution two
+		int nums1[] = {2,7,11,15};
+		int ans[] = new int[2];
+		
+		for (int i=0; i<nums1.length; i++) {
+			
+		}
 	}
-
 }
