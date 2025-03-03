@@ -19,4 +19,5 @@ public class twoSum {
 			map.put(nums[i], i);
 		}
 		System.out.println("Null");
+	}
 }
